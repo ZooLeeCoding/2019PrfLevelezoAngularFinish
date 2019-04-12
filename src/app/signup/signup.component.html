@@ -1,6 +1,5 @@
 <div style="text-align:center">
-  <h2>Login</h2>
-  <h4>{{message}}</h4>
+  <h2>Register new user</h2>
 </div>
 <div style="text-align:center">
   <input type="text" id="username" placeholder="username" [(ngModel)]="username">
@@ -10,9 +9,9 @@
 </div>
 <div style="text-align:center">
   <div>
-    <button class="btn btn-default" (click)="login()">LOGIN</button>
+    <button class="btn btn-default" (click)="register()">REGISTER</button>
   </div>
   <div>
-    <button class="btn btn-default" (click)="navigateToSignup()">SIGNUP</button>
+    <button class="btn btn-default" (click)="backToLogin()">BACK</button>
   </div>
 </div>

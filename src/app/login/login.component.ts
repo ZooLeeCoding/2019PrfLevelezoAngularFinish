@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from '../login.service';
+import { TouchSequence } from 'selenium-webdriver';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
+  message: string;
 
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -19,6 +21,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.username = "";
     this.password = "";
+    this.route.params.subscribe(params => {
+      console.log(params);
+      this.message = params['message'] ? params['message'] : '';
+    })
   }
 
   login() {
@@ -27,6 +33,10 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("user", this.username);
       this.router.navigate(["/fruit"]);
     })
+  }
+
+  navigateToSignup() {
+    this.router.navigate(["/signup"]);
   }
 
 }

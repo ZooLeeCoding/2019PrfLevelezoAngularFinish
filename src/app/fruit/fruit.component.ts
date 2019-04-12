@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-fruit',
@@ -8,24 +9,40 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class FruitComponent implements OnInit {
 
-  title: String;
-  myArray: String[];
-  user: String; 
+  title: string;
+  myArray: string[];
+  users: string; 
 
   constructor(private route: ActivatedRoute,
-    private router: Router) { 
+    private router: Router,
+    private loginService: LoginService) { 
     }
 
   ngOnInit() {
     this.title = "";
     this.myArray = ["alma", "narancs", "korte"]; 
+    if(localStorage.getItem('user') === 'admin') {
+      this.queryAllUsers();
+    }
   }
 
-  buyFruit(fruit: String) {
+  queryAllUsers() {
+    this.loginService.getUsers().subscribe(data => {
+      this.users = data;
+      console.log(this.users);
+    })
+  }
+
+  logout() {
+    localStorage.removeItem('user');
+    this.router.navigate(["/login", {message: "Logout successful"}]);
+  }
+
+  buyFruit(fruit: string) {
     console.log("Vettem egy " + fruit + "-t");
   }
 
-  addFruit(fruit: String) {
+  addFruit(fruit: string) {
     this.myArray.push(fruit);
   }
 

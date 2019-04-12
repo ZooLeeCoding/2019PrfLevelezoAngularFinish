@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { FruitComponent } from './fruit/fruit.component';
 import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
 
 import { AuthGuard } from './auth.guard';
 
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'fruit', component: FruitComponent, canActivate: [AuthGuard]},
   {path: 'login', component: LoginComponent},
+  {path: 'signup', component: SignupComponent},
 
   // a wildcard mindig legyen utolso
   {path: '**', component: LoginComponent}
